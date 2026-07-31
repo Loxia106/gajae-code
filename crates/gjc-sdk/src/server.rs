@@ -66,8 +66,8 @@ const DIRECT_COMMAND_CAPACITY: usize = 32;
 const CLIENT_HELLO_MAX_CAPABILITIES: usize = 64;
 const CLIENT_HELLO_MAX_CAPABILITY_BYTES: usize = 4096;
 const CAPABILITY_CALLBACK_CAPACITY: usize = 64;
-const INBOUND_GLOBAL_CAPACITY: usize = 64;
-const INBOUND_CONNECTION_CAPACITY: usize = 4;
+const INBOUND_GLOBAL_CAPACITY: usize = 256;
+const INBOUND_CONNECTION_CAPACITY: usize = 128;
 const CONNECTION_FRAME_PENDING_BYTES_CAPACITY: usize =
 	REVERSE_RESPONSE_FRAME_BYTES + REQUEST_FRAME_BYTES;
 const HANDSHAKE_DEADLINE: Duration = Duration::from_secs(2);
@@ -636,6 +636,10 @@ pub struct InboundReceiver {
 impl InboundReceiver {
 	pub async fn recv(&mut self) -> Option<InboundMessage> {
 		self.rx.recv().await.map(|envelope| envelope.message)
+	}
+
+	pub fn blocking_recv(&mut self) -> Option<InboundMessage> {
+		self.rx.blocking_recv().map(|envelope| envelope.message)
 	}
 }
 #[derive(Debug)]
