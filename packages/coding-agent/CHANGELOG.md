@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- Opt-in sub-agent model autorouting for the Task tool. `task.autorouting.enabled` (default `false`) turns on a fixed `fast`/`balanced`/`strong` tier vocabulary supplied by `task.autorouting.tiers` or one of the locked `task.autorouting.preset` values (`anthropic`, `openai-codex`, `google`, `xai`); explicit tiers win over a preset, an omitted `tier` on a Task item routes as `balanced`, and an autorouting pin overrides the manual model chain. Selectors must be exact provider-qualified `provider/modelId` strings with an optional thinking suffix — globs, bare model ids, and `pi/<role>` aliases are rejected by the generated config schema. Unmatched tiers fall back to manual resolution per item with a bounded reason, and the resolved routing evidence is surfaced on the task result, receipt, renderer, and task-summary prompt. With autorouting disabled, model resolution is byte-for-byte unchanged.
+
 ## [0.12.4] - 2026-07-30
 
 ## [0.12.3] - 2026-07-30
