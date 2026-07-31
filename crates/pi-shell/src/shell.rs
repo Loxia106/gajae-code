@@ -595,7 +595,8 @@ impl ExternalCommandProcessObserver for CommandProcessGroups {
 					return;
 				}
 			} else if !Self::group_anchor_is_current(&self.state, pgid)
-				&& !Self::refresh_group_anchor(&self.state, pid, pgid) {
+				&& !Self::refresh_group_anchor(&self.state, pid, pgid)
+			{
 				Self::mark_unproven(&self.state, OWNERSHIP_RETIRED_GROUP);
 				self.state.overflowed.store(true, Ordering::SeqCst);
 				Self::signal_recorded(&self.state, pid, process::KILL_SIGNAL);
