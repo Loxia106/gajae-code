@@ -556,7 +556,7 @@
     "crates/pi-natives/src/path_identity.rs": "90a5ac813f53dee0f9a81002f5971594c07f8a9bdf8d5f262737be1d8203aae1",
     "crates/pi-natives/src/ps.rs": "7696078e123b9beecc7252371c71eab2cec590413be6e6ddf4692ff6fe8c41e1",
     "crates/pi-shell/src/process.rs": "e0f04bbec2c64e679dee630325c0c3d054ca3be9c7355880f83873cbf4b75c95",
-    "crates/pi-shell/src/shell.rs": "8d92db6549bc7d43a7a14c970dc98121e5b8fe32b051cf2ae78aae7195c89cca",
+    "crates/pi-shell/src/shell.rs": "d941ce10d694b361e2f3b3004d578fcf771dc900a91c20f63a28857579c7fd09",
     "crates/brush-core-vendored/src/interp.rs": "7cddfa17c6ab12d151d5588a6659d97c427cd19d67335a127b7a4d0f5a552ac6",
     "crates/brush-core-vendored/src/commands.rs": "5245715727bd1339b78274e4e8194336f89a26eed98b2e9d990022443395a9e1",
     "packages/natives/native/index.d.ts": "c61e02fd4712c822d30fb4b1496f064097a38718c9443bef526711f828165c50",
