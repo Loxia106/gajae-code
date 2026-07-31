@@ -42,11 +42,12 @@ export type ChatDaemonAction = "stop" | "reload";
  * replacement to exact native filesystem authority; generation 18 retired that
  * binding, generation 19 bound exact cleanup to parent/link-count authority,
  * generation 20 refreshed retained cleanup semantics, and generation 21 hardens
- * exact Bash process-tree ownership shared by chat daemon cleanup.
+ * exact Bash process-tree ownership shared by chat daemon cleanup. Generation 22
+ * records the shared native ownership-authority repair across Discord and Slack.
  */
 export const CHAT_DAEMON_GENERATIONS: Readonly<Record<ChatDaemonKind, number>> = {
-	discord: 21,
-	slack: 21,
+	discord: 22,
+	slack: 22,
 };
 
 export function chatDaemonGeneration(kind: ChatDaemonKind): number {
