@@ -299,6 +299,19 @@ impl CommandProcessGroups {
 		true
 	}
 
+	fn refresh_group_anchor(state: &Arc<CommandProcessState>, pid: i32, pgid: i32) -> bool {
+		if ambient_process_group_id() == pgid {
+			return false;
+		}
+		let Some(process) = process::Process::from_pid(pid) else {
+			return false;
+		};
+		if process.status() != process::ProcessStatus::Running || process.group_id() != Some(pgid) {
+			return false;
+		}
+		Self::record_group_anchor(state, pgid, pid, process.incarnation())
+	}
+
 	fn owned_group_anchor(state: &Arc<CommandProcessState>, pid: i32, pgid: i32) -> Option<String> {
 		if pid != pgid || ambient_process_group_id() == pgid {
 			return None;
@@ -581,7 +594,8 @@ impl ExternalCommandProcessObserver for CommandProcessGroups {
 					Self::fail_ownership(&self.state);
 					return;
 				}
-			} else if !Self::group_anchor_is_current(&self.state, pgid) {
+			} else if !Self::group_anchor_is_current(&self.state, pgid)
+				&& !Self::refresh_group_anchor(&self.state, pid, pgid) {
 				Self::mark_unproven(&self.state, OWNERSHIP_RETIRED_GROUP);
 				self.state.overflowed.store(true, Ordering::SeqCst);
 				Self::signal_recorded(&self.state, pid, process::KILL_SIGNAL);
