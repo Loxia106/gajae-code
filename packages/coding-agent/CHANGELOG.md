@@ -12,6 +12,7 @@
 
 ### Fixed
 
+- `notify health` no longer counts retained native cleanup leak artifacts (`.gjc-exact-unlink-placeholder-*`, `.gjc-delete-*`) as endpoint files. They are unparseable by construction, so they were reported as unreadable endpoints and pinned health to a WARN that `notify recovery` could never clear.
 - Ordinary `ask` selectors now bound long question premises and page through every premise row without skipping rows hidden by overflow indicators (#3675).
 - First-event timeout retries now require a typed, content-free failure from the current clean attempt scope, preventing prior or stale extension activity from suppressing or admitting a later request (#3553).
 - Managed session preparation now preserves native `content_too_large` storage failures as `artifact_capacity_exceeded` instead of misreporting `binding_invalid: prepare:store`.
