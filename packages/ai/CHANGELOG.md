@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Fixed
+
+- Google-compatible streaming providers now consume newline-delimited JSON responses when the response media type declares NDJSON or JSONL, while preserving standard event-stream parsing and diagnostics.
+
 ## [0.12.15] - 2026-08-06
 
 ## [0.12.14] - 2026-08-06
