@@ -1794,7 +1794,10 @@ function registerInteractiveAnswerSource(
 		id,
 		{
 			awaitAnswer(question, options, signal) {
-				const result = this.awaitAnswerRequest?.({ question, options, interaction: "selector", controls: [] }, signal);
+				const result = this.awaitAnswerRequest?.(
+					{ question, options, interaction: "selector", controls: [] },
+					signal,
+				);
 				if (!result) return Promise.resolve(undefined);
 				return result.then(answer => {
 					if (!answer || typeof answer === "string") return answer;

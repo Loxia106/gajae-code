@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 ### Fixed
+- ACP clients such as OpenCode can now map advertised `/skill:*` commands to canonical `skill.invoke` while binding the run to exact correlated prompt completion and cancellation ownership, and can answer deep-interview forms in headless lifecycle sessions. Lifecycle hosts initialize the shared theme before tools render and before the MCP readiness budget is calculated, preventing the pre-elicitation `theme.status` failure, and protocol form providers remain authoritative if a local `/notify on` registers an interactive source later.
 - ACP session configuration now emits the spec-defined `category` field on the Mode, Model, and Thinking select options (`mode`, `model`, `thought_level`), so standards-compliant ACP clients such as Paseo discover models, modes, and thinking levels instead of an empty model picker (#3922).
 - The ACP session model catalog is now filtered to active providers via `providers.list/active`, falling back to the full catalog on older session hosts, so ACP clients no longer list models for providers without usable credentials (#3922).
 
@@ -58,7 +59,6 @@
 - Slack Web API requests now use form encoding instead of JSON, preventing thread reconciliation through `conversations.replies` from failing with `invalid_arguments`.
 
 - Managed replacement cleanup now migrates version-one receipts from earlier releases and recovers canonical exchange placeholders left by interrupted cleanup, so a stale receipt cannot permanently block the next managed session mutation with `managed_replace_cleanup_receipt_invalid`.
-- ACP clients such as OpenCode can now map advertised `/skill:*` commands to canonical `skill.invoke` while binding the run to exact correlated prompt completion and cancellation ownership, and can answer deep-interview forms in headless lifecycle sessions. Lifecycle hosts initialize the shared theme before tools render and before the MCP readiness budget is calculated, preventing the pre-elicitation `theme.status` failure, and protocol form providers remain authoritative if a local `/notify on` registers an interactive source later.
 
 ## [0.12.11] - 2026-08-03
 
